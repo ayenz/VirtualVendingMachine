@@ -101,10 +101,12 @@ public class VirtualVM {
         this.availableObject=obj;
     }
 
-    public void run() throws IOException {
+    public void run() throws IOException, Exception {
         takePictureBefore();
-        od=new ObjectDetection("before.png");
-        this.setAvailableObject(od.getDetectedObject());
+        od=new ObjectDetection();
+        od.getDetectedObject("before.png");
+        
+        //this.setAvailableObject(od.getDetectedObject());
         for (int i = 0; i < this.availableObject.size(); i++) {
             if (this.availableObject.get(i).equals("person")) {
                 person++;
@@ -125,8 +127,9 @@ public class VirtualVM {
         openDoor();
         
         takePictureAfter();
-        od1=new ObjectDetection("after.png");
-        this.setAvailableObject(od1.getDetectedObject());
+        od1=new ObjectDetection();
+        od1.getDetectedObject("after.png");
+        //this.setAvailableObject(od1.getDetectedObject());
         int tempPerson=0;
         int tempDiningTable=0;
         int tempTvMonitor=0;
